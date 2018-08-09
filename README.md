@@ -86,31 +86,82 @@ net.core.somaxconn = 4096
 <br />
 <br />
 resist SYN flood attacks
+<br />
+<br />
 net.ipv4.tcp_syncookies = 1
+<br />
+<br />
 reuse timewait sockets when safe
+<br />
+<br />
 net.ipv4.tcp_tw_reuse = 1
+<br />
+<br />
 turn off fast timewait sockets recycling
+<br />
+<br />
 net.ipv4.tcp_tw_recycle = 0
+<br />
+<br />
 short FIN timeout
+<br />
+<br />
 net.ipv4.tcp_fin_timeout = 30
+<br />
+<br />
 short keepalive time
+<br />
+<br />
 net.ipv4.tcp_keepalive_time = 1200
+<br />
+<br />
 outbound port range
+<br />
+<br />
 net.ipv4.ip_local_port_range = 10000 65000
+<br />
+<br />
 max SYN backlog
+<br />
+<br />
 net.ipv4.tcp_max_syn_backlog = 4096
+<br />
+<br />
 max timewait sockets held by system simultaneously
+<br />
+<br />
 net.ipv4.tcp_max_tw_buckets = 5000
+<br />
+<br />
 TCP receive buffer
+<br />
+<br />
 net.ipv4.tcp_rmem = 4096 87380 67108864
+<br />
+<br />
 TCP write buffer
+<br />
+<br />
 net.ipv4.tcp_wmem = 4096 65536 67108864
+<br />
+<br />
 turn on path MTU discovery
+<br />
+<br />
 net.ipv4.tcp_mtu_probing = 1
-
+<br />
+<br />
+<br />
+<br />
 for high-latency network
+<br />
+<br />
 net.ipv4.tcp_congestion_control = hybla
+<br />
+<br />
 forward ipv4
+<br />
+<br />
 net.ipv4.ip_forward = 1
 <br />
 <br />
