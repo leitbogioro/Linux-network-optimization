@@ -89,6 +89,7 @@ net.ipv4.tcp_congestion_control = $tcp_type
 # forward ipv4
 net.ipv4.ip_forward = 1
 EOF
+fi
 echo "加速已设置成功！算法为："$tcp_type
 echo -e "\n"
 
