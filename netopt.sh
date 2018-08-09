@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "ulimit -SHn 1024000" >> /etc/profile
-ulimit -n 51200
-echo "* soft nofile 51200" >> /etc/security/limits.conf
-echo "* hard nofile 51200" >> /etc/security/limits.conf
+ulimit -n 1024000
+echo "* soft nofile 1024000" >> /etc/security/limits.conf
+echo "* hard nofile 1024000" >> /etc/security/limits.conf
 /sbin/modprobe tcp_hybla
 
 read -n1 -p  "已安装增强（魔改）版的BBR？(y/n)" ans
