@@ -14,16 +14,19 @@
 <code>ulimit -SHn 1024000</code>
 <br />
 <br />
-作用：
+作用：增大Linux系统open file(s)的上限
 <br />
 <br />
-增大Linux系统open file(s)的上限
+2. 写入 /etc/security/limits.conf 的内容
 <br />
 <br />
+作用：使文件句柄数更改完全生效
 <br />
 <br />
+<code>* soft nofile 1024000</code>
 <br />
 <br />
+<code>* hard nofile 1024000</code>
 <br />
 <br />
 <br />
