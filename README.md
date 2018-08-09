@@ -29,6 +29,16 @@
 <code>* hard nofile 1024000</code>
 <br />
 <br />
+3. 开启 hybla 算法
+<br />
+<br />
+解释：适用于高延时、高丢包率的网络，比如卫星链路——适用于中美之间的链路。
+<br />
+<br />
+<code>/sbin/modprobe tcp_hybla</code>
+<br />
+<br />
+3. 如果已安装魔改版bbr，向
 <br />
 <br />
 <br />
