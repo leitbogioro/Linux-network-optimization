@@ -10,31 +10,34 @@ checkvirtual(){
 	else
 	return virtual="kvm"
 	fi
-	echo $virtual
 }
 
 checkvirtual
 
-echo "ulimit -SHn 1024000" >> /etc/profile
-ulimit -n 1024000
-echo "* soft nofile 1024000" >> /etc/security/limits.conf
-echo "* hard nofile 1024000" >> /etc/security/limits.conf
+if grep -Eqi "ulimit -SHn" /etc/profile || grep -Eqi "* soft nofile|* hard nofile" /etc/security/limits.conf; then
+	echo "ulimit 已被优化"
+else
+	echo "ulimit -SHn 1024000" >> /etc/profile
+	ulimit -n 1024000
+	echo "* soft nofile 1024000" >> /etc/security/limits.conf
+	echo "* hard nofile 1024000" >> /etc/security/limits.conf
+fi
 
 read -n1 -p  "已安装增强（魔改）版的BBR？(y/n)" ans
 if [[ ${ans} =~ [yY] ]]; then
+echo -e "\n"
 read -p "请选择你的位置和服务器之间的距离，处于同一洲按1，跨洲按2（ovz和xen架构机器无法开启hybla算法）" pick
 [ -z "$pick" ]
 expr ${pick} + 1 &>/dev/null
-if [ $? -ne 0 ]; then
-        echo -e "Input error, please input a number"
-        continue
-fi
 
-if [[ ${virtual} == "ovz" ]] || [[ ${virtual} == "xen" ]] && [[ "${pick" == 1 ]]; then
+    if [[ ${virtual} == "ovz" ]] || [[ ${virtual} == "xen" ]] || [[ "${pick}" == 1 ]]; then
 	tcp_type="cubic"
-else
+    elif [[ ${virtual} == "kvm" ]] && [[ "${pick}" == 2 ]]; then
 	tcp_type="hybla"
-fi
+    fi
+
+else
+	tcp_type="cubic"
 fi
 
 /sbin/modprobe tcp_$tcp_type
@@ -83,5 +86,7 @@ net.ipv4.tcp_congestion_control = $tcp_type
 # forward ipv4
 net.ipv4.ip_forward = 1
 EOF
+
+echo "加速已设置成功！算法为："$tcp_type
 echo -e "\n"
 
