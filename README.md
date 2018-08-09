@@ -41,7 +41,9 @@
 4. 如果已安装魔改版bbr，向/etc/sysctl.conf 写入以下内容
 <br />
 <br />
-<code># max open files
+<code>
+max open files
+<br />
 fs.file-max = 1024000
 max read buffer
 net.core.rmem_max = 67108864
