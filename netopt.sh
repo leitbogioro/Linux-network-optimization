@@ -36,6 +36,7 @@ if [[ ${virtual} == "ovz" ]] || [[ ${virtual} == "xen" ]] && [[ "${pick" == 1 ]]
 else
 	tcp_type="hybla"
 fi
+fi
 
 /sbin/modprobe tcp_$tcp_type
 	
