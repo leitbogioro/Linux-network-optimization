@@ -1,13 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# 判断系统虚拟化技术
-
+# 判断服务器架构
 if [ -d /proc/vz ]; then
-	virtual="ovz"
+        virtual="ovz"
 elif [ -d /proc/xen ]; then
-	virtual="xen"
+        virtual="xen"
 else
-	virtual="kvm"
+        virtual="kvm"
 fi
 
 echo "你的服务器架构是："$virtual
@@ -15,12 +14,12 @@ echo "你的服务器架构是："$virtual
 # 判断 ulimit 是否被优化
 
 if grep -Eqi "ulimit -SHn" /etc/profile || grep -Eqi "* soft nofile|* hard nofile" /etc/security/limits.conf; then
-	echo "ulimit 已被优化"
+        echo "ulimit 已被优化"
 else
-	echo "ulimit -SHn 1024000" >> /etc/profile
-	ulimit -n 1024000
-	echo "* soft nofile 1024000" >> /etc/security/limits.conf
-	echo "* hard nofile 1024000" >> /etc/security/limits.conf
+        echo "ulimit -SHn 1024000" >> /etc/profile
+        ulimit -n 1024000
+        echo "* soft nofile 1024000" >> /etc/security/limits.conf
+        echo "* hard nofile 1024000" >> /etc/security/limits.conf
 fi
 
 read -n1 -p  "已安装BBR？(y/n)" ans
@@ -31,13 +30,13 @@ read -p "请选择你的位置和服务器之间的距离，处于同一洲按1�
 expr ${pick} + 1 &>/dev/null
 
     if [[ ${virtual} == "ovz" ]] || [[ ${virtual} == "xen" ]] || [[ "${pick}" == 1 ]]; then
-	tcp_type="cubic"
+        tcp_type="cubic"
     elif [[ ${virtual} == "kvm" ]] && [[ "${pick}" == 2 ]]; then
-	tcp_type="hybla"
+        tcp_type="hybla"
     fi
 
 else
-	tcp_type="cubic"
+        tcp_type="cubic"
 fi
 
 /sbin/modprobe tcp_$tcp_type
