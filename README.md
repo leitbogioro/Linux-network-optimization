@@ -41,23 +41,50 @@
 4. 如果已安装魔改版bbr，向/etc/sysctl.conf 写入以下内容
 <br />
 <br />
-<code>
 max open files
 <br />
+<br />
 fs.file-max = 1024000
+<br />
+<br />
 max read buffer
+<br />
+<br />
 net.core.rmem_max = 67108864
+<br />
+<br />
 max write buffer
+<br />
+<br />
 net.core.wmem_max = 67108864
+<br />
+<br />
 default read buffer
+<br />
+<br />
 net.core.rmem_default = 65536
+<br />
+<br />
 default write buffer
+<br />
+<br />
 net.core.wmem_default = 65536
+<br />
+<br />
 max processor input queue
+<br />
+<br />
 net.core.netdev_max_backlog = 4096
+<br />
+<br />
 max backlog
+<br />
+<br />
 net.core.somaxconn = 4096
-
+<br />
+<br />
+<br />
+<br />
 resist SYN flood attacks
 net.ipv4.tcp_syncookies = 1
 reuse timewait sockets when safe
@@ -84,6 +111,6 @@ net.ipv4.tcp_mtu_probing = 1
 for high-latency network
 net.ipv4.tcp_congestion_control = hybla
 forward ipv4
-net.ipv4.ip_forward = 1</code>
+net.ipv4.ip_forward = 1
 <br />
 <br />
