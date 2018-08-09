@@ -2,17 +2,15 @@
 
 # 判断系统虚拟化技术
 
-checkvirtual(){
-	if [ -d /proc/vz ]; then
-	return virtual="ovz"
-	elif [ -d /proc/xen ]; then
-	return virtual="xen"
-	else
+if [ -d /proc/vz ]; then
+	virtual="ovz"
+elif [ -d /proc/xen ]; then
+	virtual="xen"
+else
 	return virtual="kvm"
-	fi
-}
+fi
 
-checkvirtual
+# 判断 ulimit 是否被优化
 
 if grep -Eqi "ulimit -SHn" /etc/profile || grep -Eqi "* soft nofile|* hard nofile" /etc/security/limits.conf; then
 	echo "ulimit 已被优化"
@@ -41,7 +39,10 @@ else
 fi
 
 /sbin/modprobe tcp_$tcp_type
-	
+
+if grep -Eqi "net.ipv4.tcp_congestion_control" /etc/sysctl.conf; then
+	echo "tcp 已优化"
+else
 	cat > /etc/sysctl.conf<<-EOF
 # max open files
 fs.file-max = 1024000
@@ -86,7 +87,6 @@ net.ipv4.tcp_congestion_control = $tcp_type
 # forward ipv4
 net.ipv4.ip_forward = 1
 EOF
-
 echo "加速已设置成功！算法为："$tcp_type
 echo -e "\n"
 
