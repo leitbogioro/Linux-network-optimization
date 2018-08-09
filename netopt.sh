@@ -22,7 +22,6 @@ echo "* hard nofile 1024000" >> /etc/security/limits.conf
 
 read -n1 -p  "已安装增强（魔改）版的BBR？(y/n)" ans
 if [[ ${ans} =~ [yY] ]]; then
-
 read -p "请选择你的位置和服务器之间的距离，处于同一洲按1，跨洲按2（ovz和xen架构机器无法开启hybla算法）" pick
 [ -z "$pick" ]
 expr ${pick} + 1 &>/dev/null
@@ -84,6 +83,5 @@ net.ipv4.tcp_congestion_control = $tcp_type
 # forward ipv4
 net.ipv4.ip_forward = 1
 EOF
-fi
 echo -e "\n"
 
