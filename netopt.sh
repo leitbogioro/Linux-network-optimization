@@ -7,8 +7,10 @@ if [ -d /proc/vz ]; then
 elif [ -d /proc/xen ]; then
 	virtual="xen"
 else
-	return virtual="kvm"
+	virtual="kvm"
 fi
+
+echo "你的服务器架构是：${virtual}"
 
 # 判断 ulimit 是否被优化
 
