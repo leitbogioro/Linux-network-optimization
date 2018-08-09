@@ -8,7 +8,7 @@
 优化内容：
 <br />
 <br />
-写入 /etc/profile 的内容
+1. 写入 /etc/profile 的内容
 <br />
 <br />
 <code>ulimit -SHn 1024000</code>
