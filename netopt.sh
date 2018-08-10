@@ -23,7 +23,7 @@ else
         echo "* hard nofile 1024000" >> /etc/security/limits.conf
 fi
 
-read -n1 -p  "已安装BBR？(y/n)" ans
+read -n1 -p  "已安装4.9及以上版本的内核（自带BBR）？(y/n)" ans
 if [[ ${ans} =~ [yY] ]]; then
 echo -e "\n"
 read -p "请选择你的位置和服务器之间的距离，处于同一洲按1，跨洲按2（ovz和xen架构机器无法开启hybla算法）" pick
