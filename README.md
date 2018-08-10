@@ -2,7 +2,13 @@
 # Linux-network-optimization
 <br />
 <br />
-这是一个Linux的优化小脚本
+这是一个Linux网络优化小脚本
+<br />
+<br />
+使用方法：
+<br />
+<br />
+<code>wget --no-check-certificate -O netopt.sh https://git.io/fNQEL && chmod +x netopt.sh && bash ./netopt.sh</code>
 <br />
 <br />
 优化内容：
